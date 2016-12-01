@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+</head>
+<body ng-controller="ctl">
+
+<input type="text" ng-model="pty" placeholder="input something...">
+<button ng-disabled="!pty">one button</button>
+<input type="text" ng-readonly="!pty" value="1234">
+<input type="checkbox" ng-checked="!pty">
+<input type="checkbox" ng-checked="pty">
+<select name="" id="">
+    <option value="">shenzhen</option>
+    <option value="" ng-selected="pty">guangzhou</option>
+</select>
+<a ng-href="{{ pty }}">{{ pty }}</a>
+<img ng-src="{{ pty }}" alt="">
+<ul>
+    <li ng-repeat="p in nums | orderBy: 'age': true">{{ p.name }}:{{ p.age }}</li>
+</ul>
+
+<div style="background: red" ng-show="pty>10">
+    <h1>i am h1</h1>
+    <p>welcome to shenzhen xixiang haoyeyayuan</p>
+</div>
+
+<!--EAC-->
+<run-div></run-div>
+<div run-div></div>
+<div class="run-div"></div>
+
+<script>
+    var app = angular.module('myapp', []);
+    app.controller('ctl', function ($scope) {
+        $scope.nums = [];
+        for(var i = 0; i < 10; i++){
+            var person = {};
+            person.name = 'jim' + i;
+            person.age = 20 + i;
+            $scope.nums.push(person);
+        }
+    });
+    app.directive('runDiv', function () {
+        return {
+            //E: element  A: attribute  C: class
+            restrict: 'EA',
+            //为true则将template中的代码直接替换指令
+            replace: false,
+            template: '<h1>这是我的自定义指令!</h1>'
+        }
+    })
+    
+</script>
+
+</body>
+</html>

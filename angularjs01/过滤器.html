@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+</head>
+<body ng-controller="ctl">
+
+<!-- | 将参数输入过滤器, 过滤器的输出就是转换之后的值 -->
+<p>name: {{ name | uppercase }}</p>
+<h5> name is : {{ name | lowercase | uppercase }}</h5>
+<!--orderBy: 默认从小到大, ''根据某个项排序,true是从大到小-->
+{{ nums | orderBy:'':true }}
+<br>{{ persons | orderBy:'name':false }}
+<!--保留几位小数-->
+<br>{{ 123.456 | number: 2 }}
+
+<div>
+    <input type="text" ng-model="word">
+    {{ ['php', 'java', 'python', 'mysql', 'mongo'] | filter: word }}
+</div>
+<div>{{ 34.5 | doubleNum }}</div>
+<div>{{ num2 }}---{{ str }}</div>
+
+<script>
+    var app = angular.module('myapp', []);
+    app.controller('ctl', function ($scope, numberFilter, lowercaseFilter) {
+        $scope.name = 'Jack';
+        $scope.nums = [5,7,1,2];
+        $scope.num2 = numberFilter(1.2345, 2);
+        $scope.str = lowercaseFilter('CHINA');
+        $scope.persons = [
+            {name: 'jack', age: 23},
+            {name: 'tom', age: 12},
+            {name: 'lucy', age: 43}
+        ];
+
+    })
+    app.filter('doubleNum', function () {
+        return function (input) {
+            return Number(input) * 2;
+        }
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+
+<h1>hello{{ 23+32 }}</h1>
+<!--  ng- 指令  -->
+<!-- ng-model 用来做数据绑定的指令-->
+<p>名字: <input type="text" ng-model="name"></p>
+<!-- 用{{}}来绑定ng-model中的变量-->
+<h1>hello {{ name }}</h1>
+<h4>ok {{ name }}</h4>
+
+<div ng-init="q=1;cost=5">
+    <p>总价: {{ q * cost }}</p>
+    <span ng-bind="q * cost"></span>
+</div>
+
+<div ng-init="person={name:'jack', age: 23}"></div>
+<h3>{{ person.name }}: {{ person.age }}</h3>
+
+</body>
+</html>
