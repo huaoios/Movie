@@ -1,4 +1,4 @@
 'use strict';
 
-// Define the `core.phone` module  1234567
+// Define the `core.phone` m
 angular.module('core.phone', ['ngResource']);
